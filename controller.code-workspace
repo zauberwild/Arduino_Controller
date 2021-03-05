@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"string": "cpp",
+			"xstring": "cpp"
+		},
+		"cSpell.words": [
+			"dpad"
+		]
+	}
+}
