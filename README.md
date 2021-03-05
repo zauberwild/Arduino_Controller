@@ -2,7 +2,7 @@
 
 ## Intro
 
-This is a little project i did with a joystick breakout board, that usually would be used with the Micro:Bit platform. I got this breakout borad for christmas, however I don't heve any Micro:Bit controller, so I tried to make it compatible with arduinos. For that, I broke off the connector for the PCB and soldered my own wires to it to connect to an Arduino Pro Micro.
+This is a little project i did with a joystick breakout board, that usually would be used with the Micro:Bit platform. I got this breakout board for christmas, however I don't have any Micro:Bit controller (and didn't want to get in these ones), so I tried to make it compatible with arduinos. For that, I broke off the connector for the PCB and soldered my own wires to it to connect to an Arduino Pro Micro.
 
 ## Communication and using the controller
 
