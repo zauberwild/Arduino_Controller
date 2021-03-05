@@ -2,7 +2,7 @@
 
 ## Intro
 
-This is a little project i did with a controller PCB that usually would be used with the Micro:Bit platform. I broke off the connector for the Micro:Bit PCB and soldered my own wires to it to connect to an Arduino Pro Micro.
+This is a little project i did with a joystick breakout board, that usually would be used with the Micro:Bit platform. I got this breakout borad for christmas, however I don't heve any Micro:Bit controller, so I tried to make it compatible with arduinos. For that, I broke off the connector for the PCB and soldered my own wires to it to connect to an Arduino Pro Micro.
 
 ## Communication and using the controller
 
@@ -26,7 +26,7 @@ The controller will as default act as a real controller to the computer. However
 
 The arduino will always respond with the setting you just declared or with an error, when the command couldn't be understood. You don't have to worry about newline trailers and spaces though, these are automatically removed.
 
-**However**, I also wrote a python script that makes is it easier to change the settings. Therer's also an .exe-file ready (no Installations needed) *(didn't wrote it yet, give me some time)*
+**However**, I also wrote a python script that makes is it easier to change the settings. There's also an .exe-file ready (no Installations needed, just run it). *(didn't wrote it yet, give me some time)*
 
 ### Using as Controller
 
@@ -62,6 +62,8 @@ In that mode, the data is only send, when something changes. In that case, the a
 | Arduino Pro Micro                                | 6.90€       | https://www.berrybase.de/raspberry-pi-co/arduino/boards/kompatibler-arduino-pro-micro-mit-atmel-mega-32u4-prozessor |
 | Keyestudio Joystick Breakout Board for Micro:Bit | 6.41€ 9.00$ | https://www.keyestudio.com/products/keyestudio-joystick-breakout-board-for-bbc-microbit-1 |
 
+The Arduino Pro Micro is not an official Arduino board, I think, but it uses the same processor as the Arduin Leonardo, the Atmega32u4, and appears as such. To use this board, you simply can choose the Arduino Leonardo as the board and program it rightaway.
+
 additional material:
 
 - 2 M3 screws, 10-15mm long
@@ -71,15 +73,15 @@ additional material:
 
 ## 3D-Printing and Assembly
 
-All the necessary .stl-files are in /cad/final. You can also find the Fusion 360 and STEP files there. For the printing I used an Anycubic I3 Mega, with silver PLA on 0.12mm layer height.
+All the necessary .stl-files are in /cad/final. You can also find the Fusion 360 and STEP files there. For the printing I used an Anycubic I3 Mega, with silver PLA on 0.12mm layer height. All parts together took a little bit more than 24 hours, test pieces not included.
 
-The breakout boar should fit on the standoffs of the lower side part. The push-buttons belong in the upper part behind the shoulder buttons and are wired without any resistor, because we are using INPUT_PULLUP. The micro-controller and jumper connectors belong in the upper part between the shoulder buttons. Images of the assembly and wiring are in the /media/assembly folder.
+The breakout board should fit on the standoffs of the lower side part. The Led goes under the breakout board in it's hole and might needs to glued. It's then connected to GND and the Led-Pin via a resitor. The push-buttons belong in the upper part behind the shoulder buttons and are wired without any resistor, because we are using the internal INPUT_PULLUP. The micro-controller and jumper connectors belong in the upper part between the shoulder buttons. Images of the assembly and wiring diagram are in the /media/assembly folder.
 
 ## Source-Code
 
 ### Arduino-Sketch for the controller
 
-The sketch is pretty simple and straightforward. There's one function, `blinkLed()`, everything else is done inside `void loop(){}` :
+The sketch is pretty simple and straightforward. There's one function, `blinkLed()`, everything else is done inside `void loop(){}` in that order:
 
 1. read any incoming serial data
 2. read inputs
@@ -87,6 +89,7 @@ The sketch is pretty simple and straightforward. There's one function, `blinkLed
 	1. controller
 	2. serial - continuous
 	3. serial - on event
+4. save current values as previous values
 
 To make the arduino simulate a controller, I used the Joystick library by Matthew Heironimus (https://github.com/MHeironimus/ArduinoJoystickLibrary)
 
