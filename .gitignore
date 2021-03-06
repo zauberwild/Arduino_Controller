@@ -1,1 +1,3 @@
 *.code-workspace
+python - driver/__pycache__
+.vscode
