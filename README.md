@@ -95,7 +95,12 @@ To make the arduino simulate a controller, I used the Joystick library by Matthe
 
 ### Python-Script for easy settings
 
-*COMING SOON*
+The python script is available as a pyw-file, to run it without a terminal (You can find it in the "python - driver" folder).
+
+- You can change the port in the Port-menu and Baudrate in Baudrate-Menu (although you won't have to, both this script and the arduino are set to 9600 as standard)
+- You can change the modes by clicking on the buttons. The communication usually takes a moment. You can see the changed setting in the terminal. If you don't, try again.
+
+![image-20210306144102631](C:\Users\arvid\AppData\Roaming\Typora\typora-user-images\image-20210306144102631.png)
 
 ### Arduino library
 
