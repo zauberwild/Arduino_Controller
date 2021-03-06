@@ -131,9 +131,9 @@ void loop() {
 		else if(in == "com_mode=serial"){
 			com_mode = serial;
 			Serial.println("com_mode=serial");
-			Serial.println("Communication mode is set to serial");
-			if(sending_mode=continuous) blinkLed(2);
-			if(sending_mode=onEvent) blinkLed(3);
+			Serial.print("Communication mode is set to serial ");
+			if(sending_mode==continuous) 	{blinkLed(2); Serial.println("with continuous data stream");}
+			if(sending_mode==onEvent) 		{blinkLed(3); Serial.println("with data on event");}
 		}
 
 		// joystick mode
@@ -147,6 +147,7 @@ void loop() {
 			Serial.println("joystick_mode=digital");
 			Serial.println("sending digital values");
 		}
+
 		// sending_mode
 		else if(in == "sending_mode=continuous") {
 			sending_mode = continuous;
@@ -160,6 +161,7 @@ void loop() {
 			Serial.println("sending only on event");
 			blinkLed(3);
 		}
+
 		// error message
 		else{
 			Serial.println("ERROR: '" + in + "' doesn't match with any commands");
