@@ -1,6 +1,6 @@
 {
     "programmer": "AVR ISP",
     "board": "arduino:avr:leonardo",
-    "sketch": "controller.ino",
+    "sketch": "Arduino_Controller.ino",
     "port": "COM17"
 }
