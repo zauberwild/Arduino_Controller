@@ -26,9 +26,9 @@ The controller will as default act as a real controller to the computer. However
 
 The arduino will always respond with the setting you just declared or with an error, when the command couldn't be understood. You don't have to worry about newline trailers and spaces though, these are automatically removed.
 
-**However**, I also wrote a python script that makes is it easier to change the settings. There's also an .exe-file ready (no Installations needed, just run it). *(didn't wrote it yet, give me some time)*
+**However**, I also wrote a python script that makes is it easier to change the settings. (See down below)
 
-### Using as Controller
+### Using as a controller
 
 It's _almost_ plug'n'play. You will need to configure it though, for example in Steam's controller settings, because an Arduino is not a standard and well-known gaming controller. You might want to configure both the Joystick and the D-pad, so you will need to change modes during the process.
 
@@ -38,7 +38,7 @@ As previously said, you can both use the USB-port and the jumper connectors. The
 
 The arduino has a 5V operating voltage, so be warned when combining it with a 3.3V micro-controller.
 
-**I also might write a library for arduino that would take care of all the communicating below**.
+*I also might write a library for arduino that would take care of all the communicating below*.
 
 #### continuous
 
@@ -46,7 +46,7 @@ The data is presented as one long string, each character representing one button
 `up - down - left - right - mode - l1 - r1`
 Between the letters are the analogue values, reaching from -127 to 127 (left - right and up - down, meaning a movement up returns a negative number). Because the length of these numbers can change, they are bordered by letters. `'x' - potiX - 'y' - potiY - 'z'`.
 After the letters are the button inside the joystick, or "z-axis", and the digital values of the joystick for each direction:
-`potiZ - potiDigUp - potiDigDown - potiDigLeft - potiDigRight`
+`potiZ - potiUp - potiDown - potiLeft - potiRight`
 
 #### onEvent
 
@@ -62,7 +62,7 @@ In that mode, the data is only send, when something changes. In that case, the a
 | Arduino Pro Micro                                | 6.90€       | https://www.berrybase.de/raspberry-pi-co/arduino/boards/kompatibler-arduino-pro-micro-mit-atmel-mega-32u4-prozessor |
 | Keyestudio Joystick Breakout Board for Micro:Bit | 6.41€ 9.00$ | https://www.keyestudio.com/products/keyestudio-joystick-breakout-board-for-bbc-microbit-1 |
 
-The Arduino Pro Micro is not an official Arduino board, I think, but it uses the same processor as the Arduin Leonardo, the Atmega32u4, and appears as such. To use this board, you simply can choose the Arduino Leonardo as the board and program it rightaway.
+The Arduino Pro Micro is not an official Arduino board, I think, but it uses the same processor as the Arduino Leonardo, the Atmega32u4, and appears as such. To use this board, you simply can choose the Arduino Leonardo as the board and program it rightaway.
 
 additional material:
 
@@ -98,9 +98,9 @@ To make the arduino simulate a controller, I used the Joystick library by Matthe
 The python script is available as a pyw-file, to run it without a terminal (You can find it in the "python - driver" folder).
 
 - You can change the port in the Port-menu and Baudrate in Baudrate-Menu (although you won't have to, both this script and the arduino are set to 9600 as standard)
-- You can change the modes by clicking on the buttons. The communication usually takes a moment. You can see the changed setting in the terminal. If you don't, try again.
+- You can change the modes by clicking on the buttons. The communication usually takes a moment. You can see the changed setting in the terminal. If you don't see it, try again.
 
-![image-20210306144957560](README.assets/image-20210306144957560.png)
+![python driver](README.assets/python%20driver.png)
 
 ### Arduino library
 
