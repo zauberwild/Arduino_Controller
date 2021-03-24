@@ -1,22 +1,22 @@
 #include <Joystick.h>
 
 // PINS
-const int pinUp = 15;
-const int pinDown = 0;
-const int pinLeft = 0;
-const int pinRight = 0;
+const int pinUp = 6;
+const int pinDown = 7;
+const int pinLeft = 14;
+const int pinRight = 16;
 
-const int pinL1 = 0;
-const int pinR1 = 0;
+const int pinL1 = 9;
+const int pinR1 = 5;
 
-const int pinSel = 0;
-const int pinMod = 0;
+const int pinSel = 10;
+const int pinMod = 8;
 
 const int pinPotiX = A0;
 const int pinPotiY = A1;
-const int pinPotiZ = 10;
+const int pinPotiZ = 15;
 
-const int pinLed = 16;
+const int pinLed = 4;
 
 
 // OUTPUT STATES
@@ -35,10 +35,10 @@ float potiX = 0;		// analog values for joystick
 float potiY = 0;
 int potiZ = 0;
 
-int potiDigUp = 0;			// digital values for joystick
-int potiDigDown = 0;
-int potiDigLeft = 0;
-int potiDigRight = 0;
+int potiUp = 0;			// digital values for joystick
+int potiDown = 0;
+int potiLeft = 0;
+int potiRight = 0;
 
 
 // PREVIOUS OUTPUT STATES
@@ -108,6 +108,8 @@ void setup() {
   Joystick.begin(autoSendState);
   // pinmodes
   pinMode(pinLed, OUTPUT);
+  pinMode(pinL1, INPUT_PULLUP);
+  pinMode(pinR1, INPUT_PULLUP);
 
   blinkLed(2);
   delay(350);
@@ -187,13 +189,13 @@ void loop() {
 	potiX = analogRead(pinPotiX);
 	potiY = analogRead(pinPotiY);
 	potiX = map(potiX, 0, 1023, -127, 127);
-	potiY = map(potiY, 0, 1023, -127, 127);
+	potiY = map(potiY, 0, 1023, 127, -127);
 	potiZ = !digitalRead(pinPotiZ);
 
-	potiDigUp 	= potiY < -dpadThreshold;
-	potiDigLeft = potiX < -dpadThreshold;
-	potiDigRight = potiX > dpadThreshold;
-	potiDigDown = potiY > dpadThreshold;
+	potiUp 	= potiY < -dpadThreshold;
+	potiLeft = potiX < -dpadThreshold;
+	potiRight = potiX > dpadThreshold;
+	potiDown = potiY > dpadThreshold;
 
 	// controller mode
 	if(com_mode == controller){
@@ -213,10 +215,10 @@ void loop() {
 			Joystick.setYAxis(potiY);
 			Joystick.setButton(10, potiZ);
 		}else{
-			Joystick.setButton(11, potiDigDown);
-			Joystick.setButton(12, potiDigRight);
-			Joystick.setButton(13, potiDigLeft);
-			Joystick.setButton(14, potiDigUp);		
+			Joystick.setButton(11, potiDown);
+			Joystick.setButton(12, potiRight);
+			Joystick.setButton(13, potiLeft);
+			Joystick.setButton(14, potiUp);		
 		}
 	}
 	// serial mode
@@ -237,14 +239,14 @@ void loop() {
 			Serial.print(potiY);
 			Serial.print('z');
 			Serial.print(potiZ);
-			Serial.print(potiDigUp);
-			Serial.print(potiDigDown);
-			Serial.print(potiDigLeft);
-			Serial.print(potiDigRight);
+			Serial.print(potiUp);
+			Serial.print(potiDown);
+			Serial.print(potiLeft);
+			Serial.print(potiRight);
 			Serial.print('\n');
 		}
 		else if (sending_mode == onEvent){			// TODO: change on event algorithm from for-loop to a lot of ifs
-			int curState[] = {up, down, left, right, sel, mod, l1, r1, potiX, potiY, potiZ, potiDigUp, potiDigDown, potiDigLeft, potiDigRight};
+			int curState[] = {up, down, left, right, sel, mod, l1, r1, potiX, potiY, potiZ, potiUp, potiDown, potiLeft, potiRight};
 			int prevState[] = {prevUp, prevDown, prevLeft, prevRight, prevSel, prevMod, prevL1, prevR1, prevPotiX, prevPotiY, prevPotiZ, prevPotiDigUp, prevPotiDigDown, prevPotiDigLeft, prevPotiDigRight};
 
 			for(int i = 0; i < 11; i++){
@@ -293,16 +295,16 @@ void loop() {
 						Serial.print("potiZ");
 						break;
 					case 11:
-						Serial.print("potiDigUp");
+						Serial.print("potiUp");
 						break;
 					case 12:
-						Serial.print("potiDigDown");
+						Serial.print("potiDown");
 						break;
 					case 13:
-						Serial.print("potiDigLeft");
+						Serial.print("potiLeft");
 						break;
 					case 14:
-						Serial.print("potiDigRight");
+						Serial.print("potiRight");
 						break;
 					default:
 						Serial.print("ERR overflow");
@@ -332,10 +334,10 @@ void loop() {
 	prevPotiY = potiY;
 	prevPotiZ = potiZ;
 
-	prevPotiDigUp = potiDigUp;
-	prevPotiDigLeft = potiDigLeft;
-	prevPotiDigRight = potiDigRight;
-	prevPotiDigDown = potiDigDown;
+	prevPotiDigUp = potiUp;
+	prevPotiDigLeft = potiLeft;
+	prevPotiDigRight = potiRight;
+	prevPotiDigDown = potiDown;
 
   	delay(5);
 }
