@@ -1,3 +1,5 @@
 *.code-workspace
 python - driver/__pycache__
 .vscode
+Arduino_Controller.ino.leonardo.hex
+Arduino_Controller.ino.with_bootloader.leonardo.hex
