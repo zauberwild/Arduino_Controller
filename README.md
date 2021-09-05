@@ -95,7 +95,7 @@ To make the arduino simulate a controller, I used the Joystick library by Matthe
 
 ### Python-Script for easy settings
 
-The python script is available as a pyw-file, to run it without a terminal (You can find it in the "python - driver" folder).
+The python script is available as a pyw-file, so you can run it without a terminal.
 
 - You can change the port in the Port-menu and Baudrate in Baudrate-Menu (although you won't have to, both this script and the arduino are set to 9600 as standard)
 - You can change the modes by clicking on the buttons. The communication usually takes a moment. You can see the changed setting in the terminal. If you don't see it, try again.
@@ -104,4 +104,4 @@ The python script is available as a pyw-file, to run it without a terminal (You 
 
 ### Arduino library
 
-*COMING SOON*
+*WIP*
