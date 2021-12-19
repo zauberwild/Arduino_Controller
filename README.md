@@ -45,12 +45,12 @@ The arduino has a 5V operating voltage, so be warned when combining it with a 3.
 The data is presented as one long string, each character representing one button. The string looks something like this: `00010010x25y-103z11000`. The order of buttons in front of the letters is as follows:
 `up - down - left - right - mode - l1 - r1`
 Between the letters are the analogue values, reaching from -127 to 127 (left - right and up - down, meaning a movement up returns a negative number). Because the length of these numbers can change, they are bordered by letters. `'x' - potiX - 'y' - potiY - 'z'`.
-After the letters are the button inside the joystick, or "z-axis", and the digital values of the joystick for each direction:
+After the letters are the button inside the joystick, or "z-axis", and the digital (`0/1`)values of the joystick for each direction:
 `potiZ - potiUp - potiDown - potiLeft - potiRight`
 
 #### onEvent
 
-In that mode, the data is only send, when something changes. In that case, the arduino will send the name of the button (you can see the names in the picture below), followed by a number with the new value. For example: 
+In that mode, the data is only send when something changes. In that case, the arduino will send the name of the button (you can see the names in the picture below), followed by a number with the new value. For example: 
 - `up1` (the UP-button is pressed)
 - `left0` (the LEFT-button is released)
 - `potiX68` (the joystick is moved about half ways to the right)
